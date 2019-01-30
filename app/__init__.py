@@ -4,13 +4,13 @@ from app.api.views.home import ver2 as v2
 from instance.config import app_config
 from app.db_conn import InitDb
 
-database = InitDb()
+db = InitDb()
 
 def create_app(config_name):
     """function creating the flask app"""
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(app_config.get(config_name))
-    database.init_db(app)
+    db.init_db(app)
     app.register_blueprint(v2)
     app.register_error_handler(404, not_found)
     app.register_error_handler(405, bad_request)
