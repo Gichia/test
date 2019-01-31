@@ -5,7 +5,7 @@ class Config(object):
     """Main configuration"""
     DEBUG = False
     TESTING = False
-    FLASK_ENV = "development"
+    FLASK_ENV = "testing"
     SECRET_KEY = os.getenv('SECRET_KEY')
     DATABASE_URL = os.getenv("DATABASE_URL")
 
