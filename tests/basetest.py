@@ -9,7 +9,7 @@ from instance.config import Config
 from app import create_app
 
 data = {
-	"topic": "The Test Topic",
+	"topic": "Test Topic Master",
 	"location": "Another Test Location",
 	"happeningOn": "12/12/2019",
 	"tags": ["WebDev", "Flask"],
@@ -36,9 +36,15 @@ class BaseTest(unittest.TestCase):
         """Method for get tests"""
         return self.client.get(url)
 
+    def get_meetup_id(self):
+        query = """SELECT meetup_id FROM meetups WHERE topic='Test Topic Master' LIMIT 1"""
+        self.curr.execute(query)
+        res = self.curr.fetchone()
+        return res
+
     def tearDown(self):
         """Tear down the app after running tests"""
-        query = """DELETE FROM meetups WHERE topic='The Test Topic'"""
+        query = """DELETE FROM meetups WHERE topic='Test Topic Master'"""
         self.curr.execute(query)
         self.db.commit()
         self.curr.close()

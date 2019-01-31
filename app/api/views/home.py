@@ -18,7 +18,24 @@ def home():
 def post_home():
     """Register new user endpoint"""
 
-    data = request.get_json()
+    try:
+        data = request.get_json()
+        user = data["user"]
+        location = data["location"]
+        topic = data["topic"]
+        happeningon = data["happeningOn"]
+        tags = data["tags"]
+        db.post_meetup(user, location, topic, happeningon, tags)
+    except:
+        return jsonify({"status": 500, "message": "Provide all details"})
 
-    db.post_meetup(data["user"], data["location"], data["topic"], data["happeningOn"], data["tags"])
     return jsonify({"status": "OK"})
+
+
+@ver2.route("/get/<meetup_id>", methods=["POST"])
+def get_specific(meetup_id):
+    """Register new user endpoint"""
+
+    data = db.get_meetup_id(meetup_id)
+
+    return jsonify({"id": data, "status": 200})
