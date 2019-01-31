@@ -1,8 +1,8 @@
 from flask import Flask
-from app.api.utils.errors import bad_request, internal_server_error, not_found
+from app.db_conn import create_tables
 from app.api.views.home import ver2 as v2
 from instance.config import app_config
-
+from app.api.utils.errors import bad_request, internal_server_error, not_found
 
 def create_app(config_name):
     """function creating the flask app"""
@@ -12,4 +12,5 @@ def create_app(config_name):
     app.register_error_handler(404, not_found)
     app.register_error_handler(405, bad_request)
     app.register_error_handler(500, internal_server_error)
+    create_tables()
     return app
