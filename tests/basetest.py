@@ -30,11 +30,7 @@ class BaseTest(unittest.TestCase):
 
     def post(self, url, data):
         """Method for post tests"""
-        und_token = jwt.encode({'sub': "petergichia35@gmail.com", "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, Config.SECRET_KEY)
-        token = und_token.decode("UTF-8")
-        headers = {"x-access-token": token}
-
-        return self.client.post(url, data=json.dumps(data), content_type="application/json", headers=headers)
+        return self.client.post(url, data=json.dumps(data), content_type="application/json")
 
     def get_items(self, url):
         """Method for get tests"""
