@@ -43,12 +43,7 @@ class BaseModel(object):
         return data
 
     def get_meetup_id(self, meetup_id):
-        # query = """SELECT * FROM meetups WHERE meetup_id=%s"""
-        # self.curr.execute(query, (meetup_id,))
-        # res = self.curr.fetchone()
-        # return res
-
-        query = """SELECT meetup_id FROM meetups WHERE topic='Test Topic Master' LIMIT 1"""
-        self.curr.execute(query)
-        res = self.curr.fetchone()
+        query = """SELECT * FROM meetups WHERE meetup_id=%s"""
+        self.curr.execute(query, (meetup_id,))
+        res = self.curr.fetchall()
         return res

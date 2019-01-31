@@ -35,8 +35,8 @@ class TestMeetups(BaseTest):
 
     def test_get_specific_meetup(self):
         """Method to test inaccurate data"""
-        id = self.get_meetup_id()
-        url = "http://localhost:5000/api/v2/get/{}".format(id)
+        res = self.get_meetup_id()
+        url = "http://localhost:5000/api/v2/get/{}".format(res[0])
 
         response = self.post(url, data)
         result = json.loads(response.data.decode("UTF-8"))

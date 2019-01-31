@@ -28,6 +28,12 @@ class BaseTest(unittest.TestCase):
 
         self.client.post("http://localhost:5000/api/v2/", data=json.dumps(data), content_type="application/json")
 
+    def get_meetup_id(self):
+        query = """SELECT * FROM meetups WHERE topic='Test Topic Master' LIMIT 1"""
+        self.curr.execute(query)
+        res = self.curr.fetchone()
+        return res
+
     def post(self, url, data):
         """Method for post tests"""
         return self.client.post(url, data=json.dumps(data), content_type="application/json")
@@ -35,12 +41,6 @@ class BaseTest(unittest.TestCase):
     def get_items(self, url):
         """Method for get tests"""
         return self.client.get(url)
-
-    def get_meetup_id(self):
-        query = """SELECT meetup_id FROM meetups WHERE topic='Test Topic Master' LIMIT 1"""
-        self.curr.execute(query)
-        res = self.curr.fetchone()
-        return res
 
     def tearDown(self):
         """Tear down the app after running tests"""

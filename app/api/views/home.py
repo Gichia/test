@@ -32,10 +32,13 @@ def post_home():
     return jsonify({"status": "OK"})
 
 
-@ver2.route("/get/<meetup_id>", methods=["POST"])
+@ver2.route("/get/<int:meetup_id>", methods=["POST"])
 def get_specific(meetup_id):
     """Register new user endpoint"""
 
     data = db.get_meetup_id(meetup_id)
+
+    if not data:
+        return jsonify({"status": 404})
 
     return jsonify({"id": data, "status": 200})
