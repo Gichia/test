@@ -8,7 +8,6 @@ def init_connection():
     conn = pg2.connect(db_url)
     return conn
 
-
 def create_tables():
     """Function to create tables if the do not exist"""
     conn = init_connection()
@@ -27,6 +26,7 @@ def db_tables():
         location CHAR(50) NOT NULL,
         topic CHAR(50) NOT NULL,
         createdOn CHAR(50) NOT NULL,
+        happeningon CHAR(50) NOT NULL,
         images CHAR(50) NULL,
         tags CHAR(150) NULL
         )"""
