@@ -11,7 +11,7 @@ class BaseModel(object):
         self.curr = init_connection().cursor()
 
     def get_all(self):
-        query = """SELECT email FROM app_users"""
+        query = """SELECT * FROM meetups"""
 
         cursor = self.db.cursor()
         cursor.execute(query)
